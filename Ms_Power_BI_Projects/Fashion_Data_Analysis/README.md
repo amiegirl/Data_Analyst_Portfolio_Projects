@@ -1,7 +1,5 @@
 # Fashion Data Analysis
 
-# Project Summary
-
 # Introduction
 Design firms are harnessing the power of data to maximize their product offerings by improving clothing quality and performance and analyzing clothing trends to improve merchandising strategies.
 Data analytics can be applied by the fashion industry in several ways, starting with how and what designers create and how brands market their products. It is useful in analyzing trends, consumer behavior, and preferences.
@@ -11,7 +9,7 @@ The fashion market is a very competitive environment; therefore, brands and desi
 This study examines and summarizes the properties of different apparel and their effect on its price, and it discusses the development direction of fashion design.
 
 # Goals and objectives
-The objective of this research is to help the management make informed decisions such as predicting price and product demand and generating insights about trends and customer preferences.
+The objective of this research is to help the management make informed decisions, such as predicting price and product demand and generating insights about trends and customer preferences.
 
 # Results and Discussion
 This shows the results of data collected from an e-commerce platform. User-generated content reflects consumers’ most instinctive awareness of products and can be used as an important reference for manufacturers to make product decisions.
@@ -39,4 +37,4 @@ Checking the Effect of Rating and Demand on Price, we could see that most appare
 ![Rating_Demand_vs_Price](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/751ce50c-fb00-476f-85e1-3b3273c11cb5)
 
 # Conclusion
-This project has uncovered various areas where data analytics can be utilized and implemented, including: (1) predicting product demand; (2) determining the relevant production scale and reducing unnecessary waste; (3) investigating and improving the consumer experience; (4) enhancements in business performance.
+This project has uncovered various areas where data analytics can be utilized and implemented, including: (1) predicting product demand; (2) determining the relevant production scale and reducing unnecessary waste; (3) investigating and improving the consumer experience; and (4) enhancements in business performance.
