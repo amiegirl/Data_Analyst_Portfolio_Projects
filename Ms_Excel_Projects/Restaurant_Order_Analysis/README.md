@@ -2,9 +2,8 @@
 
 # Project Summary
 
-I analyzed a data genarated from a mock dataset consisting of different restaurants and their products and ratings.
+I analyzed data generated from a mock dataset consisting of different restaurants and their products and ratings.
 
-I created an interactive dashboard that shows Rating and Order count from different restaurants using various excel charts.
+I created an interactive dashboard that shows ratings, product and order counts from different restaurants using various excel charts
 
-I created a dynamic and interactive statement dashboard that shows the count of products from each restaurant
-
+![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/8f829a05-f901-44a7-9000-7c1ae4929319)
