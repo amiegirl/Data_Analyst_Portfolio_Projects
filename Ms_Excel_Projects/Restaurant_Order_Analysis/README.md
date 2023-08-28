@@ -6,4 +6,4 @@ I analyzed data generated from a mock dataset consisting of different restaurant
 
 I created an interactive dashboard that shows ratings, product and order counts from different restaurants using various excel charts
 
-![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/8f829a05-f901-44a7-9000-7c1ae4929319)
+![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/467beeb5-3afa-4f33-95fc-e96fce64cca1)
