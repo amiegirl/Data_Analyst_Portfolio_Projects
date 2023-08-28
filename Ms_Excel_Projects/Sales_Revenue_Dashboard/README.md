@@ -10,12 +10,9 @@ I analyzed a sales revenue dataset. I used excel power query editor to merge pro
 
 # Sales Performance Dashboard
 On the dashboard, I provided information about:
-
-Total Revenue and total unit sold
-
-Sales Trend
-
-Chart of Revenue by Manufacturer, Country and Segment
+* Total Revenue and total units sold
+* Sales Trend
+* Chart of Revenue by Manufacturer, Country and Segment
 
 
 ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/af818625-d8e4-4a26-a60a-5dac19450e87)
