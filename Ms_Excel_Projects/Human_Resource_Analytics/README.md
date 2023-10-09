@@ -1,5 +1,5 @@
 # Introduction
-This dataset contains information about employees hired between 2000 and 2020.<br>
+This dataset contains information about employees hired between 2000 and 2020. The dataset was provided by Microsoft Learn Ambassadors.<br>
 # Objectives
 To generate insights and suggest healthy working conditions.<br>
 # Research Questions
