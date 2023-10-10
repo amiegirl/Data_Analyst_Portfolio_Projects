@@ -26,4 +26,4 @@ To generate insights and suggest healthy working conditions.<br>
 * There is an imbalance in the race of employees; the white race seems to be the favorite race.
 * Ohio State has the highest number of employees, and the majority of them work at the headquarters. All employees from Illinois, Indiana, Kentucky, Michigan, Pennysylvania and Wisconsin states work remotely.
 * I suggest improvements in working conditions of employees across the other states to reduce focus and population in Ohio state.
-* Give more room for remote work in the other states.
+* Give more room for remote work in all the states.
