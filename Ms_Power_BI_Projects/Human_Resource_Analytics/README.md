@@ -1,6 +1,6 @@
 # Introduction
 This case study is a fictitious dataset from a tech company called Atlas Labs and was provided by datacamp for the course "Data Analyst with Power BI".
-The dataset provide information about employees hired between 2012 and 2022 
+The dataset provide information about employees hired between 2012 and 2022. 
 # Objectives
 Provide actionable insight for company growth and uncover possible factors responsible for employee attrition.<br>
 Entire dataset and dashboard can be found [here](https://app.powerbi.com/links/qvL4Pd4OD_?ctid=8ca3a6b3-2d7d-4262-829b-e19ec50db6ff&pbi_source=linkShare)
