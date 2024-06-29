@@ -9,6 +9,4 @@ To generate business insights and maximize profit .<br>
   ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/c9688a11-5777-4198-a266-23a8d00699e8)
 # Insights
 # Conclusion and Recommendation
-* I suggest improvements in working conditions of employees across the other states to reduce focus and population in Ohio state.
-* Give more room for remote work in all the states.
-
+* I suggest improvements in.
