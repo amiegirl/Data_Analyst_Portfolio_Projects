@@ -12,7 +12,7 @@ To generate business insights and maximize profit.<br>
 **Online sales generated the highest transactions**<br>
 ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/bc086014-935c-4c00-8a9b-2d1f5b1bde2b)<br>
 <br>
-**Impact of store size on sales volume shows no correlation between the two varaibles**<br>
+**Impact of ```store size``` on ```sales volume``` shows no correlation between the two varaibles**<br>
 ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/8a925820-a8af-4584-9adb-6360b9c4b680)<br>
 <br>
 **Life Time Value(LTV) of customers by country shows customers Italy has the highest rank in LTV**<br>
@@ -23,7 +23,7 @@ To generate business insights and maximize profit.<br>
 ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/c1b36f03-868e-4e91-b5cd-bda1b7337596)
 <br>
 <br>
-**Customers in US, UK, Germany, Canada, Italy, Netherlands, Australia and France**<br>
+**Customers in US, UK, Germany, Canada, Italy, Netherlands, Australia and France have the highest retention rates**<br>
 ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/b802bb3f-fc6f-47f4-b6ef-c5e3ca0507fa)
 <br>
 <br>
