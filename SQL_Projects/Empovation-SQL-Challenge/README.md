@@ -27,12 +27,12 @@ To generate business insights and maximize profit.<br>
 ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/b802bb3f-fc6f-47f4-b6ef-c5e3ca0507fa)
 <br>
 <br>
-**Audio Category is the top selling product category with the higest sold quanties**
+**Audio Category is the top selling product category with the highest sold quantity**
 ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/6a4a7078-5871-4ef6-9e12-b9052d8cc436)
 <br>
 <br>
 # Conclusion and Recommendation
-Analysis from the electronic sales shows that online slaes generated the highest transactions, and stores size has no impact on sales volume. It also shows products in audio category as top selling products.
+Analysis from the electronic sales shows that online sales generated the highest transactions, and stores size has no impact on sales volume. It also shows products in audio category as top selling products.
 Below are my recomendation strategies to maximize profit.
 * I suggest incentives for customers in offline stores to increase customers retention.
 * Stock all stores with top selling products.
