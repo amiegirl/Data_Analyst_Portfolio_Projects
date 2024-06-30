@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/USER/OneDrive/Documents/sample_empovation_.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1825"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,10:mainCategories"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">--1.count total orders per customer
+SELECT DISTINCT CustomerKey,
+count(*) as total_orders
+FROM Sales
+GROUP by CustomerKey;</sql><sql name="SQL 2">--2.list of sold in 2020
+SELECT DISTINCT ProductName
+FROM Products
+LEFT JOIN Sales on Products.ProductKey = Sales.ProductKey
+WHERE OrderDate like '%2020%';</sql><sql name="SQL 3">--3.find all customer details from California
+SELECT *
+FROM Customers
+WHERE State = 'California';</sql><sql name="SQL 4">--4.calculate total sales quantity for product 2115
+SELECT sum(Quantity) as tot_sales_qty_p2115
+FROM Sales
+LEFT JOIN Products on Products.ProductKey = Sales.ProductKey
+WHERE Sales.ProductKey = '2115';</sql><sql name="SQL 5">--5.top 5 stores with most sales Transactions
+WITH all_stores as(
+				SELECT * 
+				FROM Sales
+				LEFT JOIN Stores on Stores.StoreKey = Sales.StoreKey)
+SELECT StoreKey,
+Country,
+sum(Quantity) as total_transactions
+FROM all_stores
+GROUP by StoreKey
+ORDER by total_transactions DESC
+LIMIT 5</sql><sql name="SQL 6">--6. Average price of Products in each Category
+SELECT Category, 
+		round(avg(UnitPriceUSD)) 'average_price($)'
+FROM Products
+GROUP by Category;</sql><sql name="SQL 7">--7.no of orders placed by each Gender
+SELECT Gender,
+		count(distinct OrderNumber) as total_orders
+FROM Customers as c
+LEFT JOIN Sales as s
+on c.CustomerKey = s.CustomerKey
+GROUP by Gender;</sql><sql name="SQL 8">--8. list of products that has never been sold
+SELECT ProductName
+FROM Products as p
+LEFT JOIN Sales as s
+on p.ProductKey = s.ProductKey
+WHERE p.ProductKey NOT in(SELECT ProductKey FROM Sales);</sql><sql name="SQL 9">--9.total amount in USD round to 2 decimal for orders made in other currencies
+SELECT 
+round(sum(p.UnitPriceUSD * s.Quantity * e.Exchange),2)'total_orders_in_other_currencies($)'
+FROM Products as p
+LEFT JOIN Sales as s
+on p.ProductKey = s.ProductKey
+LEFT JOIN Exchange_Rates as e
+on e.Currency = s.CurrencyCode
+WHERE s.CurrencyCode != 'USD';</sql><sql name="SQL 10">--10.impact of store size on sales volume
+
+SELECT sales.StoreKey, SquareMeters, sum(Quantity) as sales_volume
+FROM Sales
+LEFT JOIN Stores on Sales.StoreKey = Stores.StoreKey
+GROUP by SquareMeters
+ORDER by SquareMeters;</sql><sql name="SQL 11">--11.customer segmentation by Purchase behavior and demographics
+
+with customer_segmentation as(
+SELECT Gender, 
+    State, 
+    count(distinct OrderNumber)num_orders,
+    round(sum(UnitPriceUSD * Quantity))total_spend_USD
+FROM Customers as c
+LEFT JOIN Sales as s on c.CustomerKey = s.CustomerKey
+LEFT JOIN Products as p on s.ProductKey = p.ProductKey
+GROUP by State, Gender)
+    SELECT State,
+    Gender,
+    num_orders,
+    total_spend_USD,
+    CASE WHEN total_spend_USD &gt;= 1000000000 THEN 'BILLION SPENDER'
+        WHEN total_spend_USD &gt;= 1000000 THEN 'MILLION SPENDER'
+        WHEN total_spend_USD &gt;= 100000 THEN 'HUNDRED THOUSAND SPENDER'
+        WHEN total_spend_USD &gt;= 1000 THEN 'THOUSAND SPENDER'
+        WHEN total_spend_USD &gt;= 100 THEN 'HUNDRED SPENDER'
+        WHEN total_spend_USD &gt;= 10 THEN 'TENS SPENDER'
+        END AS purchase_behavior
+    FROM customer_segmentation
+    WHERE num_orders &gt; 0
+    GROUP by State, Gender
+    LIMIT 200;</sql><sql name="SQL 12">--12. ranking stores by sales volume
+
+SELECT StoreKey,
+sum(Quantity) as sales_volume,
+RANK() over(ORDER by sum(Quantity) DESC)'rank'
+FROM Sales
+GROUP by StoreKey</sql><sql name="SQL 13">--13. Running Total of Sales Over Time
+
+WITH daily_sales as(
+	SELECT OrderDate,
+	sum(Quantity)sales_volume
+	FROM Sales
+	GROUP by OrderDate
+	ORDER by OrderDate)
+SELECT OrderDate, sales_volume, sum(sales_volume) OVER(ORDER by OrderDate) as running_total
+FROM daily_sales
+ORDER by OrderDate;</sql><sql name="SQL 14">--14. lifetime value of Customers by Country
+
+-- Step 1: Calculate the total revenue and order count for each customer
+WITH customer_revenue AS (
+    SELECT c.CustomerKey,
+    Country,
+        COUNT(*) AS order_count,
+        sum(UnitPriceUSD * Quantity)total_spend_USD,
+        MIN(OrderDate) AS first_purchase,
+        MAX(OrderDate) AS last_purchase
+    FROM Customers as c
+    LEFT JOIN Sales as s on c.CustomerKey = s.CustomerKey
+    LEFT JOIN Products as p on s.ProductKey = p.ProductKey
+    GROUP BY Country
+),
+-- Step 2: Calculate the average order value (AOV)
+average_order_value AS (
+    SELECT CustomerKey, 
+    Country,
+        total_spend_USD / order_count AS aov
+    FROM customer_revenue
+),
+
+-- Step 3: Calculate the average order frequency (AOF) and customer lifespan
+order_frequency_and_lifespan AS (
+    SELECT
+        CustomerKey,
+        julianday(last_purchase) - julianday(first_purchase) / order_count AS aof,
+        julianday(last_purchase) - julianday(first_purchase) AS customer_lifespan
+    FROM customer_revenue
+),
+
+-- Step 4: Combine all metrics to calculate the lifetime value (LTV)
+customer_lifetime_value AS (
+    SELECT
+        a.Country,
+        a.aov,
+        o.aof,
+        o.customer_lifespan,
+        a.aov * (o.customer_lifespan / o.aof) AS ltv
+    FROM average_order_value a
+    JOIN order_frequency_and_lifespan o
+    ON a.CustomerKey = o.CustomerKey
+)
+
+-- Step 5: Select the final LTV values
+SELECT
+    Country,
+    avg(ltv),
+    RANK() over(ORDER by avg(ltv) DESC)'rank'
+    
+FROM customer_lifetime_value
+GROUP BY Country;</sql><sql name="SQL 15">--15. Customers lifetime value
+-- Calculate total purchase value per month
+WITH average_purchase AS (
+    SELECT CustomerKey,
+    strftime('%Y',OrderDate) || '-' || strftime('%m',OrderDate) AS period,
+    SUM(UnitPriceUSD * Quantity)total_purchase
+    FROM Sales
+    LEFT JOIN Products on
+    Sales.ProductKey = Products.ProductKey
+    GROUP BY CustomerKey, period
+)
+-- Calculate purchase frequency per month
+, purchase_frequency AS (
+    SELECT CustomerKey,
+    strftime('%Y',OrderDate) || '-' || strftime('%m',OrderDate) AS period,
+    COUNT(*) * 1.0 / (SELECT COUNT(DISTINCT CustomerKey) FROM Sales)purchase_frequency
+    FROM Sales
+    GROUP BY CustomerKey, period
+)
+-- Calculate average customer lifespan in months
+, average_lifespan AS (
+    SELECT CustomerKey,
+    (JULIANDAY(MAX(OrderDate)) - JULIANDAY(MIN(OrderDate))) / 30.0 AS avg_lifespan_months
+    FROM Sales
+    GROUP BY CustomerKey
+)
+-- Calculate CLV per month
+SELECT
+    DISTINCT c.Name,
+    a.period,
+    a.total_purchase * p.purchase_frequency * l.avg_lifespan_months customer_ltv
+FROM Customers c
+LEFT JOIN average_purchase a ON c.CustomerKey = a.CustomerKey
+LEFT JOIN purchase_frequency p ON c.CustomerKey = p.CustomerKey
+LEFT JOIN average_lifespan l ON c.CustomerKey = l.CustomerKey;</sql><sql name="SQL 16">--16. Year over Year Growth in Sales per Category
+with yearly_sales as(
+		SELECT Category,
+		strftime('%Y', OrderDate)Year,
+		round(sum(UnitPriceUSD * Quantity))Total_sales
+FROM Sales
+LEFT JOIN Products
+on Sales.ProductKey = Products.ProductKey
+GROUP by Category, Year)
+SELECT Category,
+		Year,
+		Total_sales,
+		(Total_sales - lag(Total_sales) OVER(ORDER by Category)) * 100.0 / lag(Total_sales) OVER(ORDER by Category) as YoY_growth
+FROM yearly_sales</sql><sql name="SQL 17">--17. Customer purchase rank within store
+SELECT s.CustomerKey,
+		Name,
+		round(sum(UnitPriceUSD * Quantity))total_spend_USD,
+		RANK() over(ORDER by sum( UnitPriceUSD * Quantity) DESC)'rank'
+FROM Sales as s
+LEFT JOIN Products as p on s.ProductKey = p.ProductKey
+LEFT JOIN Customers as c on s.CustomerKey = c.CustomerKey
+GROUP by s.CustomerKey;</sql><sql name="SQL 18">--18. Customer Retention Analysis
+WITH first_purchase AS ( -- Step 1: Calculate the first purchase date for each customer
+    SELECT CustomerKey, MIN(OrderDate) AS first_purchase_date
+    FROM Sales
+    GROUP BY CustomerKey)
+, repeat_purchases AS ( -- Step 2: Calculate repeat purchases within three months of the first purchase
+    SELECT s.CustomerKey, COUNT( DISTINCT s.OrderNumber) AS repeat_purchase_count
+    FROM Sales s
+    JOIN first_purchase fp ON s.CustomerKey = fp.CustomerKey
+    WHERE s.OrderDate BETWEEN fp.first_purchase_date AND DATE(fp.first_purchase_date, '+3 months')
+    AND s.OrderDate != fp.first_purchase_date
+    GROUP BY s.CustomerKey)
+-- Step 3: Calculate retention rates by demographics
+SELECT c.Gender, c.State || ', ' ||Country as location, 
+    COUNT(c.CustomerKey) AS total_customers,
+    COUNT(rp.CustomerKey) AS retained_customers,
+    ROUND(COUNT(rp.CustomerKey) * 100.0 / COUNT(c.CustomerKey), 2) AS retention_rate
+FROM customers c
+LEFT JOIN repeat_purchases rp ON c.CustomerKey = rp.CustomerKey
+GROUP BY c.Gender, c.Country
+ORDER BY c.Gender, retention_rate DESC</sql><sql name="SQL 19">--19. optimize product mix for each store based on sales performance
+with store_volume as 
+	(SELECT StoreKey,
+	Category,
+	ProductName,
+	sum(Quantity)quantities_sold		 		
+FROM Sales
+LEFT JOIN Products on Sales.ProductKey = Products.ProductKey
+GROUP by StoreKey,Category,ProductName
+ORDER by StoreKey,Category, quantities_sold DESC)
+SELECT StoreKey,
+		Category,
+		group_concat(ProductName,', ')product_assortment,
+		sum(quantities_sold)quantities_sold
+FROM store_volume
+GROUP by StoreKey, Category
+ORDER by StoreKey, Category,quantities_sold DESC;</sql><current_tab id="0"/></tab_sql></sqlb_project>
