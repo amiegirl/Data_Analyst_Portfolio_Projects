@@ -1,11 +1,12 @@
 # Introduction
-The dataset contains information about electronics sales. The dataset was provided by the Empovation team.<br>
+The dataset contains information about electronics sales from year 2016 to 2021. The dataset was provided by the Empovation team.<br>
 # Objectives
-To generate business insights and maximize profit .<br>
+To generate business insights and maximize profit.<br>
 # Approach
-* Processing and Cleaning the dataset
+* Processing and Cleaning the dataset.
+* Query database to gather insights. 
 # Data Cleaning
-* cleaned UnitPriceUSD and UnitCostUSD column to get rid of the ```$``` and ```,```
+* Cleaned UnitPriceUSD and UnitCostUSD column to get rid of the ```$``` and ```,```
   ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/c9688a11-5777-4198-a266-23a8d00699e8)
 # Insights
 **Online sales generated the highest transactions**<br>
@@ -31,5 +32,7 @@ To generate business insights and maximize profit .<br>
 <br>
 <br>
 # Conclusion and Recommendation
+Analysis from the electronic sales shows that online slaes generated the highest transactions, and stores size has no impact on sales volume. It also shows products in audio category as top selling products.
+Below are my recomendation strategies to maximize profit.
 * I suggest incentives for customers in offline stores to increase customers retention.
 * Stock all stores with top selling products.
