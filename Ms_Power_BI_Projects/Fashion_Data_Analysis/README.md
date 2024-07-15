@@ -16,23 +16,21 @@ This shows the results of data collected from an e-commerce platform. User-gener
 We can use consumer ratings to evaluate their attitudes towards products. We can also evaluate competing brands and use product rating counts to predict product demand and market changes.
 We can confirm that several proactive fashion brands such as Roadster, Tokyo Talkies, Sassafras, Vishudh, Anouk, Mitera, Sangria, Street 9, and Kalini (to mention a few) are seen taking full advantage of their online presence.
 ![fashion-top-brands](https://github.com/user-attachments/assets/dc39264e-36f3-4ec0-a8a8-d25aedc680a5)
-
+<br>
+<br>
 The counts from the chart of product attributes have shown that several product attributes such as fabric, pattern, occasion, types, measurements, color, and length can indeed help in predicting features of interest for fashion businesses and help forecast product trends; they could also be an effective integral part of subsequent brand designs.
-
 ![fashion-occasion-fabric-pattern](https://github.com/user-attachments/assets/63b5a627-e7fc-4f10-96f0-33d2d167416a)
-
-
+<br>
 ![fashion-garmentsize-sleeve-length-neck](https://github.com/user-attachments/assets/83624de1-b851-400a-adc0-f3826b038eb6)
-
+<br>
+<br>
 The scatterplot shows that a relationship exists between the average rating of the apparel and their rating count and prices; this can be used to better estimate product demand.
-
 ![fashion-relationship-btw-vars](https://github.com/user-attachments/assets/4a2047f0-a196-442d-8134-55e469773644)
-
-
+<br>
+<br>
 Checking the Effect of Rating and Demand on Price, we could see that most apparel with high prices is poorly rated or not rated, while apparel with moderate prices is well rated. So, we can conclude that apparel with low and moderate prices is in high demand, while apparel with high prices is in low demand.
-
 ![image](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/24bc3202-7f90-4869-bb4b-064988af684a)
-
+<br>
 ![Rating_Demand_vs_Price](https://github.com/amiegirl/Data_Analyst_Portfolio_Projects/assets/81017006/751ce50c-fb00-476f-85e1-3b3273c11cb5)
 
 # Conclusion
